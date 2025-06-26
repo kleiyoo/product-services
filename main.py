@@ -41,8 +41,7 @@ app.add_middleware(
         "https://bleu-pos-eight.vercel.app",
 
         # OOS
-        "http://localhost:5000",
-        "http://192.168.100.10:5000",
+        "https://bleu-oos.vercel.app/"
 
     ],
     allow_credentials=True,
