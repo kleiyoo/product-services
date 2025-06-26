@@ -22,10 +22,19 @@ RUN apt-get update && apt-get install -y \
     && ACCEPT_EULA=Y apt-get install -y msodbcsql17 \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# --- THIS IS THE FIX ---
-# Copy the driver configuration file to tell unixODBC where to find the driver library.
-COPY odbcinst.ini /etc/odbcinst.ini
-# ----------------------
+# Create the ODBC driver configuration file directly.
+RUN printf "[ODBC Driver 17 for SQL Server]\nDescription=Microsoft ODBC Driver 17 for SQL Server\nDriver=/opt/microsoft/msodbcsql17/lib64/libmsodbcsql-17.so\n" > /etc/odbcinst.ini
+
+# --- DIAGNOSTIC COMMANDS ---
+# We will now check the state of the system and print it to the build log.
+RUN echo "--- Verifying driver file location ---" \
+    && ls -l /opt/microsoft/msodbcsql17/lib64/ \
+    && echo "--- Verifying odbcinst.ini content ---" \
+    && cat /etc/odbcinst.ini \
+    && echo "--- Querying installed ODBC drivers ---" \
+    && odbcinst -q -d \
+    && echo "--- Diagnostics Complete ---"
+# -----------------------------
 
 # Set up the application environment
 WORKDIR /app
@@ -41,6 +50,5 @@ COPY . .
 # Expose the port your app will run on inside the container
 EXPOSE 10000
 
-# The command to run your app (This serves as a default for local dev)
-# Render will use the command from its UI, which should match this.
+# The command to run your app. Render will use the command from its UI.
 CMD ["gunicorn", "-k", "uvicorn.workers.UvicornWorker", "main:app", "--bind", "0.0.0.0:10000"]
