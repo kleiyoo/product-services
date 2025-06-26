@@ -13,7 +13,7 @@ import asyncio
 logger = logging.getLogger(__name__)
 
 # config
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="http://localhost:4000/auth/token")
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="https://bleu-ums.onrender.com/auth/token")
 router = APIRouter(prefix="/is_products", tags=["Products"])
 
 # image storage config
@@ -24,7 +24,7 @@ logger.info(f"IS: Physical image upload directory set to: {UPLOAD_DIRECTORY_PHYS
 
 IMAGE_DB_PATH_PREFIX = "/product_images"
 IMAGE_URL_STATIC_PREFIX = "/static_files"
-IS_EXTERNAL_BASE_URL = os.getenv("IS_EXTERNAL_URL", "http://localhost:8001")
+IS_EXTERNAL_BASE_URL = os.getenv("IS_EXTERNAL_URL", "https://product-services-boz2.onrender.com/")
 logger.info(f"IS: External base URL for image links will be: {IS_EXTERNAL_BASE_URL}")
 
 # models
@@ -59,7 +59,7 @@ class ProductDetailWithStatusOut(BaseModel):
 
 # helper functions
 async def validate_token_and_roles(token: str, allowed_roles: List[str]):
-    USER_SERVICE_ME_URL = "http://localhost:4000/auth/users/me"
+    USER_SERVICE_ME_URL = "https://bleu-ums.onrender.com/auth/users/me"
     async with httpx.AsyncClient() as client:
         try:
             response = await client.get(USER_SERVICE_ME_URL, headers={"Authorization": f"Bearer {token}"})

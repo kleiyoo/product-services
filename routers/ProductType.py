@@ -4,7 +4,7 @@ import httpx
 from pydantic import BaseModel
 from database import get_db_connection 
 
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="http://localhost:4000/auth/token") 
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="https://bleu-ums.onrender.com/auth/token") 
 router = APIRouter()
 
 # models
@@ -18,7 +18,7 @@ class ProductTypeUpdateRequest(BaseModel):
 
 # auth check
 async def verify_admin(token: str = Depends(oauth2_scheme)):
-    USER_SERVICE_ME_URL = "http://localhost:4000/auth/users/me" 
+    USER_SERVICE_ME_URL = "https://bleu-ums.onrender.com/auth/users/me" 
     async with httpx.AsyncClient() as client:
         try:
             response = await client.get(

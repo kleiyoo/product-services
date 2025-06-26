@@ -27,10 +27,7 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         # IMS
-        "http://localhost:3000",
-        "http://192.168.100.10:3000",
-        "http://localhost:8001",
-        "http://127.0.0.1:8001",
+        "https://bleu-ims.vercel.app",
 
         # UMS
         "http://127.0.0.1:4000",
@@ -41,8 +38,7 @@ app.add_middleware(
         # POS
         "http://localhost:9001",
         "http://127.0.0.1:9001",
-        "http://192.168.100.10:4001",
-        "http://localhost:4001",
+        "https://bleu-pos-eight.vercel.app",
 
         # OOS
         "http://localhost:5000",
