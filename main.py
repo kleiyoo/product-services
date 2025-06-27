@@ -32,7 +32,7 @@ app.add_middleware(
 
         # UMS
         "https://bleu-ums.onrender.com", #backend
-        "https://bleu-ums.vercel.app/", #frontend
+        "https://bleu-ums.vercel.app", #frontend
 
         # POS
         "http://localhost:9001",
@@ -40,7 +40,7 @@ app.add_middleware(
         "https://bleu-pos-eight.vercel.app", #frontend
 
         # OOS
-        "https://bleu-oos.vercel.app/" #frontend
+        "https://bleu-oos.vercel.app" #frontend
 
     ],
     allow_credentials=True,
