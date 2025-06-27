@@ -24,24 +24,23 @@ app = FastAPI(title="Products Service")
 
 # CORS config
 app.add_middleware(
-    CORSMiddleware,
+    CORSMiddleware, 
     allow_origins=[
         # IMS
-        "https://bleu-ims.vercel.app",
+        "https://bleu-ims.vercel.app", #frontend
+        "https://product-services-1.onrender.com", #backend
 
         # UMS
-        "http://127.0.0.1:4000",
-        "http://localhost:4000",
-        "http://192.168.100.10:4002",
-        "http://localhost:4002",
+        "https://bleu-ums.onrender.com", #backend
+        "https://bleu-ums.vercel.app/", #frontend
 
         # POS
         "http://localhost:9001",
         "http://127.0.0.1:9001",
-        "https://bleu-pos-eight.vercel.app",
+        "https://bleu-pos-eight.vercel.app", #frontend
 
         # OOS
-        "https://bleu-oos.vercel.app/"
+        "https://bleu-oos.vercel.app/" #frontend
 
     ],
     allow_credentials=True,

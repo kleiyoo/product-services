@@ -24,7 +24,7 @@ logger.info(f"IS: Physical image upload directory set to: {UPLOAD_DIRECTORY_PHYS
 
 IMAGE_DB_PATH_PREFIX = "/product_images"
 IMAGE_URL_STATIC_PREFIX = "/static_files"
-IS_EXTERNAL_BASE_URL = os.getenv("IS_EXTERNAL_URL", "https://product-services-boz2.onrender.com/")
+IS_EXTERNAL_BASE_URL = os.getenv("IS_EXTERNAL_URL", "https://product-services-1.onrender.com")
 logger.info(f"IS: External base URL for image links will be: {IS_EXTERNAL_BASE_URL}")
 
 # models
